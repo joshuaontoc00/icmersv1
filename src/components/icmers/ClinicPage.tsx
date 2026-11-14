@@ -57,7 +57,7 @@ export function ClinicPage({ requests, acknowledgingId, simulating, onAcknowledg
   const onTabKey = (e: React.KeyboardEvent, i: number) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     e.preventDefault();
-    const next = tabs[(i + 1) % 2];
+    const next = tabs[(i + 1) % 2]!;
     setTab(next.id);
     document.getElementById(`clinic-tab-${next.id}`)?.focus();
   };

@@ -187,7 +187,7 @@ const DEMO_DESCRIPTIONS = [
 ];
 
 function pick<T>(list: readonly T[]): T {
-  return list[Math.floor(Math.random() * list.length)];
+  return list[Math.floor(Math.random() * list.length)]!;
 }
 
 export function randomDemoRequest() {

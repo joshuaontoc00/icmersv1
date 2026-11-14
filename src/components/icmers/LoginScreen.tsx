@@ -54,7 +54,7 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
   const onTabKey = (e: React.KeyboardEvent, index: number) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     e.preventDefault();
-    const next = TABS[(index + (e.key === "ArrowRight" ? 1 : -1) + TABS.length) % TABS.length];
+    const next = TABS[(index + (e.key === "ArrowRight" ? 1 : -1) + TABS.length) % TABS.length]!;
     setRole(next.role);
     document.getElementById(`login-tab-${next.role}`)?.focus();
   };

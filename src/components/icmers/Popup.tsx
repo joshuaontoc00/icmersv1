@@ -76,8 +76,8 @@ export function Popup({
         'button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
       if (focusables.length === 0) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
+      const first = focusables[0]!;
+      const last = focusables[focusables.length - 1]!;
       if (e.shiftKey && (document.activeElement === first || document.activeElement === node)) {
         e.preventDefault();
         last.focus();
