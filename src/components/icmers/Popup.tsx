@@ -54,6 +54,10 @@ export function Popup({
   const dialogRef = useRef<HTMLDivElement>(null);
   const showDialog = open && !minimized;
   const styles = toneStyles[tone];
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
 
   useEffect(() => {
     if (!showDialog) return;
@@ -64,7 +68,7 @@ export function Popup({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key !== "Tab" || !node) return;
@@ -87,7 +91,7 @@ export function Popup({
       document.removeEventListener("keydown", onKey);
       if (previous && document.contains(previous)) previous.focus();
     };
-  }, [showDialog, onClose]);
+  }, [showDialog]);
 
   if (!open) return null;
 
