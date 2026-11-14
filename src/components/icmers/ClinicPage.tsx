@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {
   Activity,
+  BellOff,
+  BellRing,
   BriefcaseMedical,
   CheckCheck,
   CheckCircle2,
@@ -17,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNotificationPermission } from "@/lib/icmers/background-alerts";
 import type { EmergencyRequest } from "@/lib/icmers/requests";
 import { cn } from "@/lib/utils";
 import { CardTitle, EmptyState, StatusBadge, formatTime } from "./shared";
@@ -33,7 +36,7 @@ type Tab = "pending" | "history";
 
 const TIPS = [
   { icon: MapPin, text: "Confirm the building and room before leaving." },
-  { icon: BriefcaseMedical, text: "Bring the first aid kit and log sheet." },
+  { icon: BriefcaseMedical, text: "Bring the first aid kit or any necessary medical supplies needed by the person in need of assistance." },
   { icon: CheckCheck, text: "Acknowledge first so the user knows help is coming." },
 ];
 
@@ -45,6 +48,7 @@ export function ClinicPage({
   onSimulate,
 }: Props) {
   const [tab, setTab] = useState<Tab>("pending");
+  const { permission, request: requestNotifications } = useNotificationPermission();
   const pending = requests.filter((r) => r.status === "Pending");
   const history = requests.filter((r) => r.status === "Acknowledged");
   const rows = tab === "pending" ? pending : history;
@@ -121,6 +125,42 @@ export function ClinicPage({
           ))}
         </ul>
       </section>
+
+      {permission && permission !== "unsupported" && (
+        <section
+          className="glass-card flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5"
+          aria-label="Background alerts"
+        >
+          <div className="flex min-w-0 items-start gap-3">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
+              {permission === "denied" ? (
+                <BellOff className="size-4.5" aria-hidden />
+              ) : (
+                <BellRing className="size-4.5" aria-hidden />
+              )}
+            </span>
+            <div className="min-w-0">
+              <p className="font-semibold">Background alerts</p>
+              <p className="text-sm text-muted-foreground">
+                {permission === "granted"
+                  ? "Desktop notifications are on. You will be alerted even when this tab is in the background."
+                  : permission === "denied"
+                    ? "Desktop notifications are blocked in this browser. The popup and tab title will still alert you."
+                    : "Get a desktop notification when an emergency arrives while this tab is in the background."}
+              </p>
+            </div>
+          </div>
+          {permission === "default" && (
+            <Button className="h-11 shrink-0 rounded-lg" onClick={() => void requestNotifications()}>
+              <BellRing />
+              Enable desktop notifications
+            </Button>
+          )}
+          {permission === "granted" && (
+            <StatusBadge pending={false} pendingText="" doneText="Enabled" />
+          )}
+        </section>
+      )}
 
       <section className="grid grid-cols-3 gap-2 sm:gap-4" aria-label="Request totals">
         {stats.map(({ label, value, icon: Icon, tone }) => (
