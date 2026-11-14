@@ -71,7 +71,7 @@ export function Header({
           <Button
             variant="header"
             size="icon"
-            className="size-9 shrink-0"
+            className="size-8 shrink-0 sm:size-9"
             onClick={onToggleMute}
             aria-pressed={muted}
             aria-label={muted ? "Unmute sounds" : "Mute sounds"}
@@ -82,14 +82,14 @@ export function Header({
           <Button
             variant="header"
             size="icon"
-            className="relative size-9 shrink-0"
+            className="relative size-8 shrink-0 sm:size-9"
             onClick={onBell}
             aria-label={showDot ? "Notifications (pending requests)" : "Notifications"}
             title="Notifications"
           >
             <Bell className="!size-5" />
             {showDot && (
-              <span className="absolute right-1.5 top-1.5 size-2.5 rounded-full bg-warning ring-2 ring-header" />
+              <span className="absolute right-1 top-1 size-2.5 rounded-full bg-warning ring-2 ring-header" />
             )}
           </Button>
           <div className="flex min-w-0 items-center gap-1 px-1 text-sm font-semibold" title={name}>
@@ -100,7 +100,7 @@ export function Header({
           <Button
             variant="headerOutline"
             size="sm"
-            className="h-9 w-9 shrink-0 px-0 sm:w-auto sm:px-3"
+            className="h-8 w-8 shrink-0 px-0 sm:h-9 sm:w-auto sm:px-3"
             onClick={onLogout}
             aria-label="Log out"
           >
