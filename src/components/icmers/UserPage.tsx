@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import {
   AlertCircle,
   Building2,
+  ChevronDown,
   ClipboardList,
   Clock,
   FileText,
@@ -125,16 +126,7 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
                       {OTHERS_LABEL}
                     </option>
                   </select>
-                  <svg
-                    className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" aria-hidden />
                 </div>
                 {building === OTHERS && (
                   <div className="mt-2">
