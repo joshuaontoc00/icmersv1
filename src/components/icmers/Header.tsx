@@ -25,7 +25,7 @@ export function ConnectionIndicator({
       role="status"
       aria-live="polite"
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-1 text-[11px] font-semibold",
+        "inline-flex shrink-0 items-center gap-1 rounded-full px-1.5 py-1 text-[11px] font-semibold sm:gap-1.5 sm:px-2",
         onHeader
           ? "bg-header-foreground/15 text-header-foreground"
           : "bg-muted text-muted-foreground",
@@ -55,11 +55,11 @@ export function Header({
 }: HeaderProps) {
   return (
     <header className="sticky top-0 z-30 bg-header text-header-foreground shadow-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-1.5 px-3 sm:h-16 sm:gap-3 sm:px-6">
-        <div className="flex shrink-0 items-center gap-2">
-          <HeartPulse className="size-6 sm:size-7" aria-hidden />
+      <div className="mx-auto flex h-14 max-w-6xl items-center gap-1 px-2 sm:h-16 sm:gap-3 sm:px-6">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <HeartPulse className="size-5 sm:size-7" aria-hidden />
           <div className="leading-tight">
-            <p className="font-display text-lg font-extrabold tracking-wide sm:text-xl">
+            <p className="font-display text-base font-extrabold tracking-wide sm:text-xl">
               {APP_NAME}
             </p>
             <p className="hidden text-[11px] opacity-90 sm:block">{APP_FULL_NAME}</p>
@@ -100,7 +100,7 @@ export function Header({
           <Button
             variant="headerOutline"
             size="sm"
-            className="h-9 shrink-0 px-2 sm:px-3"
+            className="h-9 w-9 shrink-0 px-0 sm:w-auto sm:px-3"
             onClick={onLogout}
             aria-label="Log out"
           >
