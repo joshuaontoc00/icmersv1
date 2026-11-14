@@ -36,6 +36,7 @@ import {
   setSoundMuted,
   unlockAudio,
 } from "@/lib/icmers/sounds";
+import { notifyNewEmergency, useTitleFlash } from "@/lib/icmers/background-alerts";
 import { ClinicPage } from "./ClinicPage";
 import { Header } from "./Header";
 import { LoginScreen } from "./LoginScreen";
@@ -56,6 +57,8 @@ export function IcmersApp() {
   const [clinicAlert, setClinicAlert] = useState<{ id: string; minimized: boolean } | null>(null);
   const [acknowledgingId, setAcknowledgingId] = useState<string | null>(null);
   const [simulating, setSimulating] = useState(false);
+  // An emergency arrived while the clinic tab was hidden; cleared when the user returns.
+  const [missedWhileHidden, setMissedWhileHidden] = useState(false);
 
   // User popups
   const [ack, setAck] = useState<(AckInfo & { minimized: boolean }) | null>(null);
@@ -96,6 +99,10 @@ export function IcmersApp() {
       if (sessionRef.current?.role !== "clinic") return;
       setClinicAlert({ id: r.id, minimized: false });
       playClinicAlert();
+      if (document.hidden) {
+        setMissedWhileHidden(true);
+        notifyNewEmergency(r);
+      }
     },
     onAcknowledged: (r) => {
       const s = sessionRef.current;
@@ -139,6 +146,7 @@ export function IcmersApp() {
     clearSession();
     setSession(null);
     setClinicAlert(null);
+    setMissedWhileHidden(false);
     setAck(null);
     setSent(null);
     lastAckRef.current = null;
@@ -153,6 +161,16 @@ export function IcmersApp() {
   };
 
   const pending = requests.filter((r) => r.status === "Pending");
+
+  // Flash the tab title while hidden with an unacknowledged emergency.
+  useEffect(() => {
+    const onVisible = () => {
+      if (!document.hidden) setMissedWhileHidden(false);
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
+  useTitleFlash(session?.role === "clinic" && missedWhileHidden && pending.length > 0);
 
   const onBell = () => {
     if (!session) return;
