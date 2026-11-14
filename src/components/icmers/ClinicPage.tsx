@@ -62,7 +62,7 @@ export function ClinicPage({ requests, acknowledgingId, simulating, onAcknowledg
     document.getElementById(`clinic-tab-${next.id}`)?.focus();
   };
 
-  const AckButton = ({ r, full }: { r: EmergencyRequest; full?: boolean }) => (
+  const ackButton = (r: EmergencyRequest, full?: boolean) => (
     <Button
       variant="success"
       className={cn("h-10 rounded-lg", full && "h-11 w-full")}
@@ -188,7 +188,7 @@ export function ClinicPage({ requests, acknowledgingId, simulating, onAcknowledg
                         </td>
                         <td className="px-4 py-3">
                           {tab === "pending" ? (
-                            <AckButton r={r} />
+                            ackButton(r)
                           ) : (
                             <div className="space-y-1">
                               <StatusBadge pending={false} pendingText="" doneText="Acknowledged" />
@@ -234,7 +234,7 @@ export function ClinicPage({ requests, acknowledgingId, simulating, onAcknowledg
                     )}
                     <div className="mt-3">
                       {tab === "pending" ? (
-                        <AckButton r={r} full />
+                        ackButton(r, true)
                       ) : (
                         <div className="flex flex-wrap items-center gap-2">
                           <StatusBadge pending={false} pendingText="" doneText="Acknowledged" />
