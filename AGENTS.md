@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules (ICMERS)
+
+- Emergency requests live only in the shared database table and are pushed to every device with realtime subscriptions; never store them in localStorage (only the demo login and mute setting go there). Why: reports must reach the clinic on other devices instantly.
+- There are no real accounts: the browser talks to the database with the public key, so status changes and demo reset go through narrow security-definer database functions instead of open UPDATE/DELETE grants. Why: limits what an anonymous visitor can change.
+- "Reset demo data" hides old rows (cleared_at) and re-inserts seeds instead of deleting. Why: destructive deletes are blocked and history stays recoverable.
+- Realtime INSERTs older than a few minutes never trigger the clinic alert, so seed rows restored by a reset do not pop up as new emergencies.

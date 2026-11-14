@@ -14,13 +14,62 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      emergency_requests: {
+        Row: {
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          building: string
+          cleared_at: string | null
+          created_at: string
+          description: string
+          id: string
+          reporter_id: string
+          reporter_name: string
+          request_number: string
+          room: string
+          status: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          building: string
+          cleared_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          reporter_id: string
+          reporter_name: string
+          request_number?: string
+          room: string
+          status?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          building?: string
+          cleared_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          reporter_id?: string
+          reporter_name?: string
+          request_number?: string
+          room?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      acknowledge_request: {
+        Args: { _by: string; _id: string }
+        Returns: undefined
+      }
+      gen_request_number: { Args: never; Returns: string }
+      reset_demo_data: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
