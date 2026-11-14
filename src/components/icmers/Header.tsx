@@ -40,7 +40,7 @@ export function Header({ name, connected, muted, showDot, onToggleMute, onBell, 
           <HeartPulse className="size-6 sm:size-7" aria-hidden />
           <div className="leading-tight">
             <p className="font-display text-lg font-extrabold tracking-wide sm:text-xl">{APP_NAME}</p>
-            <p className="hidden text-[11px] opacity-90 lg:block">{APP_FULL_NAME}</p>
+            <p className="hidden text-[11px] opacity-90 sm:block">{APP_FULL_NAME}</p>
           </div>
         </div>
 
