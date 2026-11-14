@@ -13,33 +13,55 @@ type HeaderProps = {
   onLogout: () => void;
 };
 
-export function ConnectionIndicator({ connected, onHeader }: { connected: boolean; onHeader?: boolean }) {
+export function ConnectionIndicator({
+  connected,
+  onHeader,
+}: {
+  connected: boolean;
+  onHeader?: boolean;
+}) {
   return (
     <span
       role="status"
       aria-live="polite"
       className={cn(
         "inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-1 text-[11px] font-semibold",
-        onHeader ? "bg-header-foreground/15 text-header-foreground" : "bg-muted text-muted-foreground",
+        onHeader
+          ? "bg-header-foreground/15 text-header-foreground"
+          : "bg-muted text-muted-foreground",
       )}
     >
       <span className="relative flex size-2">
-        {connected && <span className="absolute inset-0 rounded-full bg-success animate-live-ping" />}
-        <span className={cn("relative size-2 rounded-full", connected ? "bg-success" : "bg-offline")} />
+        {connected && (
+          <span className="absolute inset-0 rounded-full bg-success animate-live-ping" />
+        )}
+        <span
+          className={cn("relative size-2 rounded-full", connected ? "bg-success" : "bg-offline")}
+        />
       </span>
       {connected ? "Live" : "Offline"}
     </span>
   );
 }
 
-export function Header({ name, connected, muted, showDot, onToggleMute, onBell, onLogout }: HeaderProps) {
+export function Header({
+  name,
+  connected,
+  muted,
+  showDot,
+  onToggleMute,
+  onBell,
+  onLogout,
+}: HeaderProps) {
   return (
     <header className="sticky top-0 z-30 bg-header text-header-foreground shadow-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-1.5 px-3 sm:h-16 sm:gap-3 sm:px-6">
         <div className="flex shrink-0 items-center gap-2">
           <HeartPulse className="size-6 sm:size-7" aria-hidden />
           <div className="leading-tight">
-            <p className="font-display text-lg font-extrabold tracking-wide sm:text-xl">{APP_NAME}</p>
+            <p className="font-display text-lg font-extrabold tracking-wide sm:text-xl">
+              {APP_NAME}
+            </p>
             <p className="hidden text-[11px] opacity-90 sm:block">{APP_FULL_NAME}</p>
           </div>
         </div>

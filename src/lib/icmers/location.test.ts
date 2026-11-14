@@ -30,7 +30,9 @@ describe("resolveLocation", () => {
   });
 
   it("rejects Others with nothing typed", () => {
-    expect(resolveLocation({ ...base, building: OTHERS, buildingOther: "  ", room: "101" })).toBeNull();
+    expect(
+      resolveLocation({ ...base, building: OTHERS, buildingOther: "  ", room: "101" }),
+    ).toBeNull();
     expect(resolveLocation({ ...base, building: "CET", room: OTHERS, roomOther: "" })).toBeNull();
   });
 

@@ -10,7 +10,11 @@ export function loadSession(): Session | null {
     const raw = window.localStorage.getItem(SESSION_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<Session>;
-    if ((parsed.role === "user" || parsed.role === "clinic") && typeof parsed.id === "string" && parsed.id) {
+    if (
+      (parsed.role === "user" || parsed.role === "clinic") &&
+      typeof parsed.id === "string" &&
+      parsed.id
+    ) {
       return { role: parsed.role, id: parsed.id };
     }
   } catch {

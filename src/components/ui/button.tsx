@@ -19,8 +19,7 @@ const buttonVariants = cva(
         success: "bg-success text-success-foreground shadow-sm hover:bg-success/90",
         emergency:
           "bg-primary text-primary-foreground shadow-emergency hover:bg-primary/90 rounded-2xl text-lg font-bold motion-safe:animate-emergency-pulse",
-        header:
-          "text-header-foreground hover:bg-header-foreground/15 focus-on-header rounded-lg",
+        header: "text-header-foreground hover:bg-header-foreground/15 focus-on-header rounded-lg",
         headerOutline:
           "border border-header-foreground/60 text-header-foreground hover:bg-header-foreground/15 focus-on-header rounded-lg",
         dashed:

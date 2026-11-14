@@ -1,5 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Building2, CheckCircle2, DoorOpen, FileText, Send, Siren, Timer, User } from "lucide-react";
+import {
+  Building2,
+  CheckCircle2,
+  DoorOpen,
+  FileText,
+  Send,
+  Siren,
+  Timer,
+  User,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import bgAsset from "@/assets/campus_medical_background.png.asset.json";
@@ -20,7 +29,13 @@ import {
   type Role,
   type Session,
 } from "@/lib/icmers/session";
-import { playAckChime, playClinicAlert, playSentDing, setSoundMuted, unlockAudio } from "@/lib/icmers/sounds";
+import {
+  playAckChime,
+  playClinicAlert,
+  playSentDing,
+  setSoundMuted,
+  unlockAudio,
+} from "@/lib/icmers/sounds";
 import { ClinicPage } from "./ClinicPage";
 import { Header } from "./Header";
 import { LoginScreen } from "./LoginScreen";
@@ -97,7 +112,11 @@ export function IcmersApp() {
   // Close the clinic popup if its request disappears or is acknowledged elsewhere.
   const alertRequest = clinicAlert ? requests.find((r) => r.id === clinicAlert.id) : undefined;
   useEffect(() => {
-    if (clinicAlert && requests.length > 0 && (!alertRequest || alertRequest.status !== "Pending")) {
+    if (
+      clinicAlert &&
+      requests.length > 0 &&
+      (!alertRequest || alertRequest.status !== "Pending")
+    ) {
       setClinicAlert(null);
     }
   }, [clinicAlert, alertRequest, requests.length]);
@@ -153,7 +172,12 @@ export function IcmersApp() {
       await acknowledgeRequest(id, CLINIC_NAME);
       const r = requests.find((x) => x.id === id);
       if (r) {
-        upsertLocal({ ...r, status: "Acknowledged", acknowledged_by: CLINIC_NAME, acknowledged_at: new Date().toISOString() });
+        upsertLocal({
+          ...r,
+          status: "Acknowledged",
+          acknowledged_by: CLINIC_NAME,
+          acknowledged_at: new Date().toISOString(),
+        });
       }
       setClinicAlert((cur) => (cur?.id === id ? null : cur));
       toast.success("Acknowledged. The reporter has been notified.");
@@ -259,7 +283,11 @@ export function IcmersApp() {
             <DetailRow icon={<Building2 />} label="Building" value={alertRequest.building} />
             <DetailRow icon={<DoorOpen />} label="Room" value={alertRequest.room} />
             <DetailRow icon={<User />} label="Reporter" value={alertRequest.reporter_name} />
-            <DetailRow icon={<FileText />} label="Details" value={alertRequest.description || "No description"} />
+            <DetailRow
+              icon={<FileText />}
+              label="Details"
+              value={alertRequest.description || "No description"}
+            />
           </div>
           <Button
             variant="success"
@@ -288,7 +316,8 @@ export function IcmersApp() {
           onClose={() => setSent(null)}
         >
           <p className="text-sm text-muted-foreground">
-            Your report reached the clinic. Stay where you are — you will be notified as soon as the clinic responds.
+            Your report reached the clinic. Stay where you are — you will be notified as soon as the
+            clinic responds.
           </p>
         </Popup>
       )}
@@ -348,7 +377,9 @@ function AckPopup({
       onExpand={onExpand}
       onClose={onClose}
     >
-      <p className="text-sm text-muted-foreground">Help is coming. Stay calm and stay where you are.</p>
+      <p className="text-sm text-muted-foreground">
+        Help is coming. Stay calm and stay where you are.
+      </p>
       <div className="mt-3 space-y-2.5 rounded-xl bg-success-soft p-4">
         <DetailRow icon={<Building2 />} label="Building" value={info.building} />
         <DetailRow icon={<DoorOpen />} label="Room" value={info.room} />

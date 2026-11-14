@@ -73,7 +73,11 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
           </div>
         </div>
 
-        <div role="tablist" aria-label="Sign in as" className="mt-6 grid grid-cols-2 gap-1 rounded-xl bg-muted p-1">
+        <div
+          role="tablist"
+          aria-label="Sign in as"
+          className="mt-6 grid grid-cols-2 gap-1 rounded-xl bg-muted p-1"
+        >
           {TABS.map((tab, i) => {
             const active = role === tab.role;
             const Icon = tab.icon;
@@ -92,7 +96,9 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
                 onKeyDown={(e) => onTabKey(e, i)}
                 className={cn(
                   "flex min-h-11 items-center justify-center gap-1.5 rounded-lg px-2 text-sm font-semibold transition-colors",
-                  active ? "bg-card text-primary shadow-sm" : "text-muted-foreground hover:text-foreground",
+                  active
+                    ? "bg-card text-primary shadow-sm"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 <Icon className="size-4 shrink-0" aria-hidden />
@@ -102,14 +108,26 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
           })}
         </div>
 
-        <form onSubmit={submit} className="mt-6 space-y-4" noValidate role="tabpanel" aria-labelledby={`login-tab-${role}`}>
+        <form
+          onSubmit={submit}
+          className="mt-6 space-y-4"
+          noValidate
+          role="tabpanel"
+          aria-labelledby={`login-tab-${role}`}
+        >
           <div>
-            <label htmlFor={idField} className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold">
+            <label
+              htmlFor={idField}
+              className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold"
+            >
               <User className="size-4 text-primary" aria-hidden />
               {role === "user" ? "User ID" : "Staff ID"}
             </label>
             <div className="relative">
-              <User className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+              <User
+                className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden
+              />
               <input
                 id={idField}
                 value={id}
@@ -123,12 +141,18 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
             </div>
           </div>
           <div>
-            <label htmlFor={pwField} className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold">
+            <label
+              htmlFor={pwField}
+              className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold"
+            >
               <Lock className="size-4 text-primary" aria-hidden />
               Password
             </label>
             <div className="relative">
-              <Lock className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+              <Lock
+                className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden
+              />
               <input
                 id={pwField}
                 type="password"
@@ -143,7 +167,11 @@ export function LoginScreen({ connected, onLogin, onResetDemo }: Props) {
           </div>
 
           {error && (
-            <p id={errId} role="alert" className="rounded-lg bg-primary-soft px-3 py-2 text-sm font-medium text-primary">
+            <p
+              id={errId}
+              role="alert"
+              className="rounded-lg bg-primary-soft px-3 py-2 text-sm font-medium text-primary"
+            >
               {error}
             </p>
           )}

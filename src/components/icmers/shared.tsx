@@ -8,7 +8,15 @@ export function formatTime(iso: string | null) {
   return format(new Date(iso), "MMM d, h:mm a");
 }
 
-export function StatusBadge({ pending, pendingText, doneText }: { pending: boolean; pendingText: string; doneText: string }) {
+export function StatusBadge({
+  pending,
+  pendingText,
+  doneText,
+}: {
+  pending: boolean;
+  pendingText: string;
+  doneText: string;
+}) {
   return (
     <span
       className={cn(
@@ -16,7 +24,11 @@ export function StatusBadge({ pending, pendingText, doneText }: { pending: boole
         pending ? "bg-warning-soft text-warning-foreground" : "bg-success-soft text-success",
       )}
     >
-      {pending ? <Clock className="size-3.5" aria-hidden /> : <CheckCircle2 className="size-3.5" aria-hidden />}
+      {pending ? (
+        <Clock className="size-3.5" aria-hidden />
+      ) : (
+        <CheckCircle2 className="size-3.5" aria-hidden />
+      )}
       {pending ? pendingText : doneText}
     </span>
   );

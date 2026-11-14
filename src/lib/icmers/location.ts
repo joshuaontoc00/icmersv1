@@ -9,8 +9,7 @@ export type LocationInput = {
 
 /** Turns the form selections into the final building and room, or null when incomplete. */
 export function resolveLocation(input: LocationInput): { building: string; room: string } | null {
-  const building =
-    input.building === OTHERS ? input.buildingOther.trim() : input.building.trim();
+  const building = input.building === OTHERS ? input.buildingOther.trim() : input.building.trim();
   const room = input.room === OTHERS ? input.roomOther.trim() : input.room.trim();
   if (!building || !room) return null;
   if (building.length > MAX_CUSTOM_LENGTH || room.length > MAX_CUSTOM_LENGTH) return null;

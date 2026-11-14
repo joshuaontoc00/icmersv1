@@ -80,13 +80,18 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
     }
   };
 
-  const fieldClass = "h-12 w-full rounded-xl border bg-card px-3 text-base outline-none focus:border-primary";
+  const fieldClass =
+    "h-12 w-full rounded-xl border bg-card px-3 text-base outline-none focus:border-primary";
 
   return (
     <div className="space-y-6">
       <section>
-        <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">Your health, our priority</h1>
-        <p className="mt-1 text-muted-foreground">Report an emergency quickly and get the help you need.</p>
+        <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
+          Your health, our priority
+        </h1>
+        <p className="mt-1 text-muted-foreground">
+          Report an emergency quickly and get the help you need.
+        </p>
       </section>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
@@ -97,7 +102,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
             </div>
             <form onSubmit={submit} noValidate className="mt-5 space-y-4">
               <div>
-                <label htmlFor={ids.building} className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold">
+                <label
+                  htmlFor={ids.building}
+                  className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold"
+                >
                   <Building2 className="size-4 text-primary" aria-hidden />
                   Building
                 </label>
@@ -126,7 +134,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
                       {OTHERS_LABEL}
                     </option>
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" aria-hidden />
+                  <ChevronDown
+                    className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground"
+                    aria-hidden
+                  />
                 </div>
                 {building === OTHERS && (
                   <div className="mt-2">
@@ -134,7 +145,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
                       Type the location
                     </label>
                     <div className="relative">
-                      <PencilLine className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+                      <PencilLine
+                        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                        aria-hidden
+                      />
                       <input
                         ref={buildingOtherRef}
                         id={ids.bOther}
@@ -157,7 +171,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
                       Type the room
                     </label>
                     <div className="relative">
-                      <PencilLine className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+                      <PencilLine
+                        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+                        aria-hidden
+                      />
                       <input
                         ref={roomOtherRef}
                         id={ids.rOther}
@@ -173,7 +190,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
               </div>
 
               <div>
-                <label htmlFor={ids.desc} className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold">
+                <label
+                  htmlFor={ids.desc}
+                  className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold"
+                >
                   <MessageSquareText className="size-4 text-primary" aria-hidden />
                   Description <span className="font-normal text-muted-foreground">(optional)</span>
                 </label>
@@ -189,7 +209,11 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
               </div>
 
               {error && (
-                <p id={ids.err} role="alert" className="flex items-start gap-2 rounded-lg bg-primary-soft px-3 py-2 text-sm font-medium text-primary">
+                <p
+                  id={ids.err}
+                  role="alert"
+                  className="flex items-start gap-2 rounded-lg bg-primary-soft px-3 py-2 text-sm font-medium text-primary"
+                >
                   <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />
                   {error}
                 </p>
@@ -202,7 +226,10 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
             </form>
           </section>
 
-          <section className="rounded-2xl border-2 border-dashed border-primary/40 bg-card/70 p-4" aria-label="Presentation demo">
+          <section
+            className="rounded-2xl border-2 border-dashed border-primary/40 bg-card/70 p-4"
+            aria-label="Presentation demo"
+          >
             <p className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-muted-foreground">
               <Presentation className="size-4" aria-hidden />
               Presentation demo
@@ -245,8 +272,13 @@ export function UserPage({ userId, requests, onSubmit, onSimulateAck }: Props) {
                     </p>
                     {r.description && (
                       <p className="mt-2 flex items-start gap-1.5 text-sm">
-                        <FileText className="mt-0.5 size-3.5 shrink-0 text-muted-foreground" aria-hidden />
-                        <span className="min-w-0 whitespace-pre-wrap break-words">{r.description}</span>
+                        <FileText
+                          className="mt-0.5 size-3.5 shrink-0 text-muted-foreground"
+                          aria-hidden
+                        />
+                        <span className="min-w-0 whitespace-pre-wrap break-words">
+                          {r.description}
+                        </span>
                       </p>
                     )}
                   </li>

@@ -85,7 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "ICMERS" },
       { name: "description", content: "Integrated Campus Medical Emergency Reporting System" },
       { property: "og:title", content: "ICMERS" },
-      { property: "og:description", content: "Integrated Campus Medical Emergency Reporting System" },
+      {
+        property: "og:description",
+        content: "Integrated Campus Medical Emergency Reporting System",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#d44444" },

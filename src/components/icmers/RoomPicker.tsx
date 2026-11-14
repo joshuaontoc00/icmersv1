@@ -140,7 +140,10 @@ export function RoomPicker({ value, onChange, invalid }: Props) {
           {display || "Select room"}
         </span>
         <ChevronDown
-          className={cn("size-5 shrink-0 text-muted-foreground transition-transform", open && "rotate-180")}
+          className={cn(
+            "size-5 shrink-0 text-muted-foreground transition-transform",
+            open && "rotate-180",
+          )}
           aria-hidden
         />
       </button>

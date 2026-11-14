@@ -126,7 +126,12 @@ export function Popup({
       >
         <div className={cn("h-1.5 w-full", styles.bar)} />
         <div className="flex items-start gap-3 p-5 pb-0">
-          <div className={cn("flex size-11 shrink-0 items-center justify-center rounded-full [&_svg]:size-6", styles.icon)}>
+          <div
+            className={cn(
+              "flex size-11 shrink-0 items-center justify-center rounded-full [&_svg]:size-6",
+              styles.icon,
+            )}
+          >
             {icon}
           </div>
           <h2 id={titleId} className="min-w-0 flex-1 pt-2 text-xl font-bold leading-tight">
@@ -157,7 +162,15 @@ export function Popup({
   );
 }
 
-export function DetailRow({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+export function DetailRow({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+}) {
   return (
     <div className="flex items-start gap-2.5 text-sm">
       <span className="mt-0.5 shrink-0 text-muted-foreground [&_svg]:size-4">{icon}</span>
